@@ -14,43 +14,31 @@ class MyDatabase:
         #self.cur.execute("Create database mca044")
         #print("Data base has been created")
     def display(self):
-        #self.db = pymysql.connect(host='172.16.34.105',user='mca044',passwd='mca044',database='mca044')
-        #self.cur = self.db.cursor()
         cur.execute("Show databases")
         for db in cur:
             print(db)
     def create(self):
-        #self.db = pymysql.connect(host='172.16.34.105',user='mca044',passwd='mca044',database='mca044')
-        #self.cur = self.db.cursor()
         cur.execute("Create table emp(name varchar(20),slno int(20),address varchar(20),empcode varchar(20),dob int(20),age int(20),mobile int(20),status varchar(20),designation varchar(20))")
         print("Table has been created")
     def showtable(self):
-        #self.db = pymysql.connect(host='172.16.34.105',user='mca044',passwd='mca044',database='mca044')
-        #self.cur = self.db.cursor()
         print("The table created is : ")
         cur.execute("Describe table emp")
         cur.execute("Show tables")
         for self.tb in cur:
             print(self.tb)
     def insert(self):
-        #self.db = pymysql.connect(host='172.16.34.105',user='mca044',passwd='mca044',database='mca044')
-        #self.cur = self.db.cursor()
         self.sqlform = "Insert into emp(name,slno,address,empcode,dob,age,mobile,status,designation) values(%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         self.employee = [("akash",101,"bangalore","i101",1303300,21,1721737,"single","manager"),("akash",102,"bangalore","i101",1333000,21,1722375,"single","manager"),("akash",103,"bangalore","i101",1303300,21,17217237,"single","manager"),("akash",104,"bangalore","i101",1344440,21,17271237,"single","manager"),("akash",105,"bangalore","i101",13044440,21,17571237,"single","manager"),("akash",106,"bangalore","i101",13066660,21,1721737,"single","manager")]
         cur.executemany(self.sqlform, self.employee)
         db.commit()
         print("Values have been inserted")
     def displaytable(self):
-        #self.db = pymysql.connect(host='172.16.34.105',user='mca044',passwd='mca044',database='mca044')
-        #self.cur = self.db.cursor()
         print("Contents that are in the table are")
         cur.execute("Select * from emp")
         self.result = cur.fetchall()
         for self.row in self.result:
             print(self.row)
     def delete(self,slno):
-        #self.db = pymysql.connect(host='172.16.34.105',user='mca044',passwd='mca044',database='mca044')
-        #self.cur = self.db.cursor()
         self.sql = "Delete from emp where slno = '%s'"%(int(slno))
         cur.execute(self.sql)
         db.commit()
